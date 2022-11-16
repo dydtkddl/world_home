@@ -1,0 +1,24 @@
+{% extends "world/base.html" %}
+{% block content %}
+
+<select name="{{parameter}}" id="factor" onchange="change()">
+    {% for factor in factors%}
+    <option id="{{factor}}" value="">{{factor}}</option>
+    {% endfor %}
+</select>
+<img src ="data:image/png;base64,{{chart|safe}}">
+
+<script>
+    function change(){
+        // let id = event.target.id;
+        // console.log(id);
+        let selected = document.querySelector("#factor");
+        let selectid = selected.options[selected.selectedIndex].id;
+        console.log(selectid)
+        location = `?parameter=${selectid}`
+    }
+    let factor = document.querySelector('select').name
+    console.log(factor)
+    document.getElementById(factor).selected =true
+</script>
+{% endblock %}
